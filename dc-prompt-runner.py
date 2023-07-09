@@ -7,7 +7,6 @@ import re
 
 from PIL import Image
 
-# image = Image.open('story.png')
 
 
 
@@ -23,7 +22,9 @@ st.set_page_config(
         'About': "Demo Page by AdCreativeDEv"
     }
 )
-# st.image(image, caption='created by midjourney ')
+image = Image.open('openai-banner.png')
+st.image(image, caption='created by MJ')
+
 st.title(":blue[" + page_title + "]")
 
 
