@@ -22,7 +22,7 @@ st.set_page_config(
         'About': "Demo Page by AdCreativeDEv"
     }
 )
-image = Image.open('openai-banner.png')
+image = Image.open('openai-banner.jpg')
 st.image(image, caption='created by MJ')
 
 st.title(":blue[" + page_title + "]")
