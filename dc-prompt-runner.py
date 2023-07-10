@@ -10,7 +10,7 @@ from PIL import Image
 
 
 
-page_title = "Prompt Ruuner"
+page_title = "📝 🏃‍♂️Prompt Runner "
 st.set_page_config(
     page_title=page_title,
     page_icon="🤖",
