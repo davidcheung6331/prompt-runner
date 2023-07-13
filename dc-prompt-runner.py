@@ -7,24 +7,18 @@ import re
 
 from PIL import Image
 
-
-
-
 page_title = "📝 🏃‍♂️Prompt Runner "
 st.set_page_config(
     page_title=page_title,
     page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded",
-    menu_items={
-        'Get Help': 'https://www.extremelycoolapp.com/help',
-        'Report a bug': "https://www.extremelycoolapp.com/bug",
-        'About': "Demo Page by AdCreativeDEv"
-    }
+    
 )
 image = Image.open('openai-banner.jpg')
 st.image(image, caption='created by MJ')
 
+# st.image(image, caption='created by midjourney ')
 st.title(":blue[" + page_title + "]")
 
 
@@ -62,7 +56,7 @@ def upload_file():
             print(content_system_prompt)
         else:
             content_system_prompt = "Not System Prompt Available !"
-        content_system_prompt = st.text_area("SYSTEM PROMPT : ", value=content_system_prompt, height=150)
+        content_system_prompt = st.text_area("**SYSTEM PROMPT** : ", value=content_system_prompt, height=150)
 
 
         # USER PROMPT
@@ -72,34 +66,34 @@ def upload_file():
             print(content_user_prompt)
         else:
             content_user_prompt = ""
-        content_user_prompt = st.text_area("USER PROMPT : ", value=content_user_prompt, height=50)
+        content_user_prompt = st.text_area("**USER PROMPT** (you can edit): ", value=content_user_prompt, height=100)
 
 
 
 
-        st.subheader("Step 2 : Submit the Prompt to OpenAI")
+        st.subheader("Step 2 : Submit (system & user) Prompt to OpenAI")
 
-        if st.button("Submit to OpenAi"):    
+        if st.button("Submit"):    
             if  len(content_user_prompt) ==0:
                 full_prompt = "System prompt : " + content_system_prompt 
             else:
                 full_prompt = "System prompt : " + content_system_prompt + " USER : " + content_user_prompt
             print(full_prompt)
             openai.api_key = system_openai_api_key
-            st.spinner("Generating ...")
-            completions = openai.Completion.create(
-                engine=engine,
-                prompt=full_prompt,
-                temperature=int(temperature),
-                max_tokens=int(tokens),
-                top_p=1,
-                n=1,
-                frequency_penalty=0,
-                presence_penalty=0
-                )    
-            
-            replyText = completions['choices'][0]['text']
-            st.info(replyText)
+            with st.spinner("Generating ..."):
+                completions = openai.Completion.create(
+                    engine=engine,
+                    prompt=full_prompt,
+                    temperature=float(temperature),
+                    max_tokens=int(tokens),
+                    top_p=1,
+                    n=1,
+                    frequency_penalty=0,
+                    presence_penalty=0
+                    )    
+                
+                replyText = completions['choices'][0]['text']
+                st.info(replyText)
 
 
 
