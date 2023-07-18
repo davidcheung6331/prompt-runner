@@ -56,7 +56,7 @@ def upload_file():
             print(content_system_prompt)
         else:
             content_system_prompt = "Not System Prompt Available !"
-        content_system_prompt = st.text_area("**SYSTEM PROMPT** : ", value=content_system_prompt, height=200)
+        content_system_prompt = st.text_area("**SYSTEM PROMPT** : ", value=content_system_prompt, height=230)
 
 
         # USER PROMPT
@@ -66,7 +66,7 @@ def upload_file():
             print(content_user_prompt)
         else:
             content_user_prompt = ""
-        content_user_prompt = st.text_area("**USER PROMPT** (you can edit): ", value=content_user_prompt, height=50)
+        content_user_prompt = st.text_area("**USER PROMPT** (you can edit): ", value=content_user_prompt, height=30)
 
 
 
