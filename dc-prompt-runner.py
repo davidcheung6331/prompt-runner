@@ -6,16 +6,7 @@ import openai
 import re
 
 from PIL import Image
-# st.set_option('server.enableCORS', False)
-page_title = "📝 🏃‍♂️Prompt Runner "
-st.set_page_config(
-    page_title=page_title,
-    page_icon="🤖",
-    layout="wide",
-    initial_sidebar_state="expanded",
-    
-)
-# Hide the "View Source" button by modifying the app's HTML
+
 st.markdown(
     """
     <style>
@@ -25,6 +16,16 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
+page_title = "Prompt Runner "
+st.set_page_config(
+    page_title=page_title,
+    page_icon="🏃‍♂️",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    
+)
+# Hide the "View Source" button by modifying the app's HTML
 
 image = Image.open('openai-banner.jpg')
 st.image(image, caption='created by MJ')
