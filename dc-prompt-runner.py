@@ -21,6 +21,10 @@ hide_menu_style = """
         .stActionButton {
             display: none !important;
         }
+        .styles_terminalButton__JBj5T {
+            display: none !important;
+        }
+        
         </style>
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
