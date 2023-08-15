@@ -13,7 +13,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Hide the GitHub icon by modifying the app's HTML
+# Hide the GitHub icon and button by modifying the app's HTML
 hide_menu_style = """
         <style>
         #MainMenu {visibility: hidden;}
@@ -24,7 +24,6 @@ hide_menu_style = """
         .styles_terminalButton__JBj5T {
             display: none !important;
         }
-        
         </style>
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
