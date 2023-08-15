@@ -15,6 +15,8 @@ st.set_page_config(
     initial_sidebar_state="expanded",
     
 )
+st.set_option('server.enableCORS', False)
+
 image = Image.open('openai-banner.jpg')
 st.image(image, caption='created by MJ')
 
