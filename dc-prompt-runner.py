@@ -13,16 +13,17 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Hide the "View Source" button and footer by modifying the app's HTML
-st.markdown(
-    """
-    <style>
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+# Hide the "View Source" and GitHub icons by modifying the app's HTML
+hide_menu_style = """
+        <style>
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        .sidebar-content .sidebar .sidebar-section.sidebar-buttons button:first-child {
+            display: none;
+        }
+        </style>
+        """
+st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 # Display banner image
 image = Image.open('openai-banner.jpg')
@@ -30,14 +31,6 @@ st.image(image, caption='created by MJ')
 
 # Set page title
 st.title(":blue[" + page_title + "]")
-
-# Hide the main menu
-hide_menu_style = """
-        <style>
-        #MainMenu {visibility: hidden;}
-        </style>
-        """
-st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 # Set OpenAI API key
 with st.sidebar:
