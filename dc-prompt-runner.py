@@ -13,12 +13,12 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Hide the "View Source" and GitHub icons by modifying the app's HTML
+# Hide the GitHub and Share icons by modifying the app's HTML
 hide_menu_style = """
         <style>
         #MainMenu {visibility: hidden;}
         footer {visibility: hidden;}
-        .sidebar-content .sidebar .sidebar-section.sidebar-buttons button:first-child {
+        .stApp .streamlit-expander.collapsed .sidebar-content .sidebar .sidebar-section:last-child {
             display: none;
         }
         </style>
@@ -73,7 +73,7 @@ def upload_file():
 
         st.subheader("Step 2 : Submit (system & user) Prompt to OpenAI")
 
-        if st.button("Submit"):    
+        if st.button("Submit"):
             if len(content_user_prompt) == 0:
                 full_prompt = "System prompt : " + content_system_prompt
             else:
