@@ -1,12 +1,19 @@
-from langchain.agents import create_csv_agent
-from langchain.llms import OpenAI
 import os
+import re
 import streamlit as st
 import openai
-import re
-
 from PIL import Image
 
+# Set page configuration
+page_title = "📝 🏃‍♂️Prompt Runner "
+st.set_page_config(
+    page_title=page_title,
+    page_icon="🤖",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
+
+# Hide the "View Source" button and footer by modifying the app's HTML
 st.markdown(
     """
     <style>
@@ -17,23 +24,14 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-page_title = "Prompt Runner "
-st.set_page_config(
-    page_title=page_title,
-    page_icon="🏃‍♂️",
-    layout="wide",
-    initial_sidebar_state="expanded",
-    
-)
-# Hide the "View Source" button by modifying the app's HTML
-
+# Display banner image
 image = Image.open('openai-banner.jpg')
 st.image(image, caption='created by MJ')
 
-# st.image(image, caption='created by midjourney ')
+# Set page title
 st.title(":blue[" + page_title + "]")
 
-
+# Hide the main menu
 hide_menu_style = """
         <style>
         #MainMenu {visibility: hidden;}
@@ -41,15 +39,16 @@ hide_menu_style = """
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
+# Set OpenAI API key
 with st.sidebar:
     system_openai_api_key = os.environ.get('OPENAI_API_KEY')
     system_openai_api_key = st.text_input(":key: OpenAI Key :", value=system_openai_api_key)
     os.environ["OPENAI_API_KEY"] = system_openai_api_key
 
-    temperature = st.text_input("temperature" ,"0.5") 
-    tokens = st.text_input("tokens" ,"200")
-    engine =  st.text_input("engine" ,"text-davinci-003")
-    
+    temperature = st.text_input("temperature", "0.5")
+    tokens = st.text_input("tokens", "200")
+    engine = st.text_input("engine", "text-davinci-003")
+
 
 st.subheader("Step 1. 📤 Upload prompt text here ...")
 
@@ -57,7 +56,7 @@ st.subheader("Step 1. 📤 Upload prompt text here ...")
 def upload_file():
     uploaded_file = st.file_uploader("Upload a text file", type=["txt"])
     if uploaded_file is not None:
-        
+
         # Read file content
         content = uploaded_file.read().decode("utf-8")
 
@@ -70,7 +69,6 @@ def upload_file():
             content_system_prompt = "Not System Prompt Available !"
         content_system_prompt = st.text_area("**SYSTEM PROMPT** : ", value=content_system_prompt, height=230)
 
-
         # USER PROMPT
         match = re.search(r"\[USER\](.*?)$", content, re.DOTALL)
         if match:
@@ -80,14 +78,11 @@ def upload_file():
             content_user_prompt = ""
         content_user_prompt = st.text_area("**USER PROMPT** (you can edit): ", value=content_user_prompt, height=30)
 
-
-
-
         st.subheader("Step 2 : Submit (system & user) Prompt to OpenAI")
 
         if st.button("Submit"):    
-            if  len(content_user_prompt) ==0:
-                full_prompt = "System prompt : " + content_system_prompt 
+            if len(content_user_prompt) == 0:
+                full_prompt = "System prompt : " + content_system_prompt
             else:
                 full_prompt = "System prompt : " + content_system_prompt + " USER : " + content_user_prompt
             print(full_prompt)
@@ -102,27 +97,10 @@ def upload_file():
                     n=1,
                     frequency_penalty=0,
                     presence_penalty=0
-                    )    
-                
+                )
+
                 replyText = completions['choices'][0]['text']
                 st.info(replyText)
 
-
-
-
-
 # Display file content
 upload_file()
-
-
-
-
-
-    
-
-
-
-
-    
-
-
