@@ -6,7 +6,7 @@ import openai
 import re
 
 from PIL import Image
-
+st.set_option('server.enableCORS', False)
 page_title = "📝 🏃‍♂️Prompt Runner "
 st.set_page_config(
     page_title=page_title,
@@ -15,7 +15,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
     
 )
-st.set_option('server.enableCORS', False)
+
 
 image = Image.open('openai-banner.jpg')
 st.image(image, caption='created by MJ')
