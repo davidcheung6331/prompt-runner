@@ -41,7 +41,7 @@ with st.sidebar:
     engine =  st.text_input("engine" ,"text-davinci-003")
     
 
-st.subheader("Step 1. 📤 Upload prompt text")
+st.subheader("Step 1. 📤 Upload prompt text here ...")
 
 # Define function to read and display text file contents
 def upload_file():
