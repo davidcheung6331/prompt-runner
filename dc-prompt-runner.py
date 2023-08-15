@@ -13,13 +13,13 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Hide the GitHub and Share icons by modifying the app's HTML
+# Hide the GitHub icon by modifying the app's HTML
 hide_menu_style = """
         <style>
         #MainMenu {visibility: hidden;}
         footer {visibility: hidden;}
-        .stApp .streamlit-expander.collapsed .sidebar-content .sidebar .sidebar-section:last-child {
-            display: none;
+        .stActionButton {
+            display: none !important;
         }
         </style>
         """
